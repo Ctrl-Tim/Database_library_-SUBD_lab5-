@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "printed_product")
@@ -32,8 +33,7 @@ public class PrintedProduct {
 
     public PrintedProduct() { }
 
-    public PrintedProduct(int productId, Genre genre, String title, String author, String itemType, Date sourceExpiration, int amount) {
-        this.productId = productId;
+    public PrintedProduct(Genre genre, String title, String author, String itemType, Date sourceExpiration, int amount) {
         this.genre = genre;
         this.title = title;
         this.author = author;
@@ -100,7 +100,7 @@ public class PrintedProduct {
 
     @Override
     public String toString() {
-        return String.format("%-30d%-30d%-30s%-30s%-30s%-30d%tF-30d",
+        return String.format("%-30d%-30s%-30s%-30s%-30s%-30tF%-30d",
             productId, genre.getGenreId(), title, author, itemType, sourceExpiration, amount);
     }
 }

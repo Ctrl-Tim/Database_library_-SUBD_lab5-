@@ -13,15 +13,15 @@ public class Accounting {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private Employee employeeId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    private PrintedProduct product;
+    private PrintedProduct productId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "library_card_number")
-    private Reader reader;
+    private Reader libraryCardNumber;
 
     @Column(name = "date_of_issue")
     private Date dateOfIssue;
@@ -34,11 +34,10 @@ public class Accounting {
 
     public Accounting() { }
 
-    public Accounting(int orderNumber, Employee employee, PrintedProduct product, Reader reader, Date dateOfIssue, int term, Date returnDate) {
-        this.orderNumber = orderNumber;
-        this.employee = employee;
-        this.product = product;
-        this.reader = reader;
+    public Accounting(Employee employeeId, PrintedProduct productId, Reader libraryCardNumber, Date dateOfIssue, int term, Date returnDate) {
+        this.employeeId = employeeId;
+        this.productId = productId;
+        this.libraryCardNumber = libraryCardNumber;
         this.dateOfIssue = dateOfIssue;
         this.term = term;
         this.returnDate = returnDate;
@@ -48,33 +47,32 @@ public class Accounting {
         return orderNumber;
     }
 
-
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
     }
 
     public Employee getEmployee() {
-        return employee;
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployee(Employee employeeId) {
+        this.employeeId = employeeId;
     }
 
     public PrintedProduct getProduct() {
-        return product;
+        return productId;
     }
 
-    public void setProduct(PrintedProduct product) {
-        this.product = product;
+    public void setProduct(PrintedProduct productId) {
+        this.productId = productId;
     }
 
     public Reader getReader() {
-        return reader;
+        return libraryCardNumber;
     }
 
-    public void setReader(Reader reader) {
-        this.reader = reader;
+    public void setReader(Reader libraryCardNumber) {
+        this.libraryCardNumber = libraryCardNumber;
     }
 
     public Date getDateOfIssue() {
@@ -101,10 +99,14 @@ public class Accounting {
         this.returnDate = returnDate;
     }
 
+    public PrintedProduct getProductId() { return productId; }
+
+    public void setProductId(PrintedProduct productId) { this.productId = productId; }
+
     @Override
     public String toString() {
         return String.format("%-30d%-30d%-30d%-30d%-30d%tF-30d%-30d%tF",
-                orderNumber, employee.getEmployeeId(), product.getProductId(), reader.getExpiryDateOfTheLibraryCard(),
+                orderNumber, employeeId.getEmployeeId(), productId.getProductId(), libraryCardNumber.getExpiryDateOfTheLibraryCard(),
                 dateOfIssue, term, returnDate);
     }
 }

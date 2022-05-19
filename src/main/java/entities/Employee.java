@@ -1,5 +1,6 @@
 package entities;
 
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,11 +10,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
-    private int employeeId;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Set <Accounting> orders;
+    private int id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -26,28 +23,15 @@ public class Employee {
 
     public Employee() { }
 
-    public Employee(int employeeId, Set<Accounting> orders, String firstName, String lastName, String middleName) {
-        this.employeeId = employeeId;
-        this.orders = orders;
+    public Employee(String firstName, String lastName, String middleName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
+
     }
 
     public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Set<Accounting> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Accounting> orders) {
-        this.orders = orders;
+        return id;
     }
 
     public String getFirstName() {
@@ -77,6 +61,6 @@ public class Employee {
     @Override
     public String toString() {
         return String.format("%-30d%-30s%-30s%-30s",
-                employeeId, firstName, lastName, middleName);
+                id, firstName, lastName, middleName);
     }
 }

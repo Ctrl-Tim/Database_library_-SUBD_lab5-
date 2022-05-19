@@ -12,10 +12,6 @@ public class Reader {
     @Column(name = "library_card_number")
     private int libraryCardNumber;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Set <Accounting> orders;
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -31,20 +27,18 @@ public class Reader {
     @Column(name = "expiry_date_of_the_library_card")
     private Date expiryDateOfTheLibraryCard;
 
+    public Reader() { }
+
+    public Reader(String firstName, String lastName, String middleName, int yearOfBirth, Date expiryDateOfTheLibraryCard) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.yearOfBirth = yearOfBirth;
+        this.expiryDateOfTheLibraryCard = expiryDateOfTheLibraryCard;
+    }
+
     public int getLibraryCardNumber() {
         return libraryCardNumber;
-    }
-
-    public void setLibraryCardNumber(int libraryCardNumber) {
-        this.libraryCardNumber = libraryCardNumber;
-    }
-
-    public Set<Accounting> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Accounting> orders) {
-        this.orders = orders;
     }
 
     public String getFirstName() {
@@ -89,7 +83,7 @@ public class Reader {
 
     @Override
     public String toString() {
-        return String.format("%-30d%-30s%-30s%-30s%-30d%-30d%tF",
+        return String.format("%-25d%-25s%-25s%-25s%-25d%tF",
                 libraryCardNumber, firstName, lastName, middleName, yearOfBirth, expiryDateOfTheLibraryCard);
     }
 }
