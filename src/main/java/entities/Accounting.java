@@ -105,8 +105,8 @@ public class Accounting {
 
     @Override
     public String toString() {
-        return String.format("%-30d%-30d%-30d%-30d%-30d%tF-30d%-30d%tF",
-                orderNumber, employeeId.getEmployeeId(), productId.getProductId(), libraryCardNumber.getExpiryDateOfTheLibraryCard(),
+        return String.format("%-30d%-30d%-30d%-30d%-30tF%-30d%tF",
+                orderNumber, employeeId.getEmployeeId(), productId.getProductId(), libraryCardNumber.getLibraryCardNumber(),
                 dateOfIssue, term, returnDate);
     }
 }

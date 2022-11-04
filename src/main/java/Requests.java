@@ -52,7 +52,7 @@ public class Requests {
         List<Reader> readers = session.createQuery("SELECT r FROM Reader r", Reader.class).getResultList();
         System.out.printf("%-25s%-25s \n", "Имя", "Фамилия");
         for (Reader r : readers)
-            if(r.getExpiryDateOfTheLibraryCard().after(java.sql.Date.valueOf("2022-09-05")))
+            if(r.getExpiryDateOfTheLibraryCard().after(java.sql.Date.valueOf("2022-09-01")))
                 System.out.printf("%-25s%-25s \n", r.getFirstName(), r.getLastName());
     }
 }
